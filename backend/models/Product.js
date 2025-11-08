@@ -53,18 +53,6 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please add a category'],
       trim: true,
-      enum: [
-        'Electronics',
-        'Fashion',
-        'Home & Kitchen',
-        'Beauty',
-        'Sports',
-        'Books',
-        'Toys',
-        'Automotive',
-        'Health',
-        'Other',
-      ],
     },
     description: {
       type: String,

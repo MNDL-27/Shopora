@@ -1,7 +1,8 @@
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
-const Rating = ({ rating, numReviews, showReviews = true }) => {
+const Rating = ({ rating, numReviews, showReviews = true, size = 'normal' }) => {
   const stars = [];
+  const sizeClass = size === 'small' ? 'text-xs' : 'text-sm';
 
   for (let i = 1; i <= 5; i++) {
     if (rating >= i) {
@@ -9,16 +10,16 @@ const Rating = ({ rating, numReviews, showReviews = true }) => {
     } else if (rating >= i - 0.5) {
       stars.push(<FaStarHalfAlt key={i} className="text-yellow-400" />);
     } else {
-      stars.push(<FaRegStar key={i} className="text-yellow-400" />);
+      stars.push(<FaRegStar key={i} className="text-gray-300" />);
     }
   }
 
   return (
-    <div className="flex items-center space-x-1">
-      <div className="flex">{stars}</div>
-      {showReviews && numReviews !== undefined && (
-        <span className="text-sm text-gray-600 dark:text-gray-400 ml-2">
-          ({numReviews} {numReviews === 1 ? 'review' : 'reviews'})
+    <div className="flex items-center gap-1">
+      <div className={`flex gap-0.5 ${sizeClass}`}>{stars}</div>
+      {showReviews && numReviews !== undefined && numReviews > 0 && (
+        <span className={`text-gray-500 dark:text-gray-400 ml-1 ${size === 'small' ? 'text-xs' : 'text-sm'}`}>
+          ({numReviews})
         </span>
       )}
     </div>

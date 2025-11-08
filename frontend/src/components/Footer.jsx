@@ -10,9 +10,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Shopora</h3>
+            <h3 className="text-xl font-bold mb-4">⚡ ElectroShop</h3>
             <p className="text-gray-400">
-              Your one-stop destination for quality products at great prices. Shop with confidence!
+              Your trusted destination for cutting-edge electronics, latest smartphones, powerful laptops, and tech accessories.
             </p>
           </div>
 
@@ -96,7 +96,7 @@ const Footer = () => {
         <hr className="my-8 border-gray-700" />
 
         <div className="text-center text-gray-400">
-          <p>&copy; {currentYear} Shopora. All rights reserved.</p>
+          <p>&copy; {currentYear} ElectroShop. All rights reserved.</p>
           <div className="mt-2 space-x-4">
             <Link to="/privacy" className="hover:text-white transition-colors">
               Privacy Policy

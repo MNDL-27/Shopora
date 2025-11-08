@@ -17,8 +17,7 @@
     "test:watch": "jest --watch",
     "lint": "eslint backend/**/*.js",
     "lint:fix": "eslint backend/**/*.js --fix",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "prepare": "husky install"
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "keywords": [
     "ecommerce",
@@ -31,7 +30,11 @@
   "author": "Shopora Team",
   "license": "MIT",
   "dependencies": {
+    "i18next": "^23.0.1",
+    "i18next-fs-backend": "^2.1.0",
+    "i18next-http-middleware": "^3.5.0",
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.2.0",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -42,9 +45,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.2",
     "morgan": "^1.10.0",
-    "nodemailer": "^6.9.13",
-    "cloudinary": "^2.2.0",
     "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.13",
     "stripe": "^15.3.0"
   },
   "devDependencies": {

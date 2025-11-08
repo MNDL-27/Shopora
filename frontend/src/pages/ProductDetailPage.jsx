@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loader from '../components/Loader';
 import Rating from '../components/Rating';
+import Product3DViewer from '../components/Product3DViewer';
 import { productService } from '../services';
 import { formatPrice } from '../utils/helpers';
 import { useCart } from '../context/CartContext';
@@ -17,6 +18,7 @@ const ProductDetailPage = () => {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
   const [submittingReview, setSubmittingReview] = useState(false);
+  const [show3D, setShow3D] = useState(false);
   
   const { addToCart } = useCart();
   const { isAuthenticated } = useAuth();
@@ -72,13 +74,44 @@ const ProductDetailPage = () => {
     <div className="container mx-auto px-4 py-8 animate-fade-in">
       {/* Product Details */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        {/* Image */}
-        <div>
-          <img
-            src={product.image || '/placeholder.png'}
-            alt={product.name}
-            className="w-full rounded-lg shadow-lg"
-          />
+        {/* Image & 3D Viewer */}
+        <div className="relative">
+          {/* Toggle Button */}
+          <div className="absolute top-4 right-4 z-10">
+            <button
+              onClick={() => setShow3D(!show3D)}
+              className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all flex items-center gap-2 font-medium"
+            >
+              {show3D ? (
+                <>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  2D View
+                </>
+              ) : (
+                <>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                  </svg>
+                  3D View
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Image or 3D Viewer */}
+          {show3D ? (
+            <div className="w-full h-[500px] bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-950 dark:to-gray-900 rounded-lg shadow-lg overflow-hidden">
+              <Product3DViewer category={product.category} />
+            </div>
+          ) : (
+            <img
+              src={product.image || '/placeholder.png'}
+              alt={product.name}
+              className="w-full rounded-lg shadow-lg"
+            />
+          )}
         </div>
 
         {/* Info */}

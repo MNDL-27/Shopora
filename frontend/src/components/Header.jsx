@@ -15,37 +15,38 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+    <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="text-2xl font-bold text-primary-600 dark:text-primary-400">
-            Shopora
+          <Link to="/" className="text-3xl font-bold gradient-text flex items-center gap-2 group">
+            <span className="transform group-hover:scale-110 transition-transform">⚡</span>
+            ElectroShop
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            <Link to="/" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          <div className="hidden md:flex items-center space-x-8">
+            <Link to="/" className="nav-link">
               Home
             </Link>
-            <Link to="/products" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            <Link to="/products" className="nav-link">
               Products
             </Link>
             
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all transform hover:scale-110"
               aria-label="Toggle theme"
             >
-              {theme === 'dark' ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-gray-600" />}
+              {theme === 'dark' ? <FaSun className="text-yellow-400 text-lg" /> : <FaMoon className="text-gray-600 text-lg" />}
             </button>
 
             {/* Cart */}
-            <Link to="/cart" className="relative hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-              <FaShoppingCart className="text-xl" />
+            <Link to="/cart" className="relative p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all transform hover:scale-110 group">
+              <FaShoppingCart className="text-xl text-gray-700 dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400" />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-lg animate-pulse">
                   {cartCount}
                 </span>
               )}

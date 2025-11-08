@@ -1,0 +1,15 @@
+{
+  "email": {
+    "orderConfirmationSubject": "Order Confirmation",
+    "orderReceived": "We've received your order and it's being processed.",
+    "willNotifyOnShip": "We'll send you a shipping confirmation email as soon as your order ships.",
+    "orderShippedSubject": "Your Order Has Been Shipped",
+    "orderShippedTitle": "Your order is on its way!",
+    "orderShippedBody": "Your order has been shipped and should arrive soon."
+  },
+  "api": {
+    "userNotFound": "User not found",
+    "productNotFound": "Product not found",
+    "invalidCredentials": "Invalid email or password"
+  }
+}

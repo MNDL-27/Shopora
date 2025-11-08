@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
           const { data } = await axios.get('/users/profile');
           setUser(data);
         } catch (error) {
-          console.error('Token verification failed:', error);
           logout();
         } finally {
           setLoading(false);

@@ -27,7 +27,7 @@ const ProductsPage = () => {
     total: 0,
   });
 
-  const categories = ['Electronics', 'Clothing', 'Books', 'Home & Garden', 'Sports', 'Toys'];
+  const categories = ['Smartphones', 'Laptops', 'Tablets', 'Audio', 'Cameras', 'Gaming', 'Wearables', 'Accessories'];
   const sortOptions = [
     { value: '', label: 'Default' },
     { value: 'price_asc', label: 'Price: Low to High' },
@@ -102,7 +102,7 @@ const ProductsPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 animate-fade-in">
-      <h1 className="text-4xl font-bold mb-8">All Products</h1>
+      <h1 className="text-4xl font-bold mb-8 gradient-text">Electronics & Gadgets</h1>
 
       {/* Search and Filters */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">

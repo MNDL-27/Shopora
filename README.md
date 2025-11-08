@@ -1,146 +1,81 @@
-# 🛍️ Shopora - Modern E-Commerce Platform
+# ⚡ ElectroShop - Modern Electronics E-Commerce Platform
 
-A full-stack, production-ready e-commerce web application built with the MERN stack (MongoDB, Express.js, React, and Node.js). Features a modern, responsive UI with dark mode, complete shopping cart functionality, user authentication, admin dashboard, and payment integration.
+<div align="center">
 
-![MERN Stack](https://img.shields.io/badge/Stack-MERN-green)
-![License](https://img.shields.io/badge/License-MIT-blue)
-![Version](https://img.shields.io/badge/Version-1.0.0-orange)
+![ElectroShop](https://img.shields.io/badge/ElectroShop-v1.0.0-blue.svg)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=flat&logo=mongodb&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=flat)
+![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat&logo=node.js&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
 
-## ✨ Features
+A full-stack modern electronics e-commerce platform built with the MERN stack. Shop for the latest smartphones, laptops, gaming gear, audio equipment, and tech accessories.
 
-### Frontend Features
-- 🎨 **Modern UI/UX** - Built with React and Tailwind CSS
-- 🌓 **Dark Mode** - Toggle between light and dark themes
-- 📱 **Fully Responsive** - Works seamlessly on all devices
-- 🛒 **Shopping Cart** - Add, update, and remove items with persistent storage
-- 🔍 **Advanced Search & Filters** - Search by keyword, filter by category, price range, and sort options
-- ⭐ **Product Reviews & Ratings** - Customer reviews with star ratings
-- 🔐 **User Authentication** - Secure JWT-based login and registration
-- 👤 **User Dashboard** - View and manage orders and profile
-- 💳 **Checkout Flow** - Complete checkout process with shipping and payment
+[Features](#-features) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started) • [API Documentation](#-api-documentation)
 
-### Backend Features
-- 🚀 **RESTful API** - Clean, well-documented API endpoints
-- 🔒 **JWT Authentication** - Secure token-based authentication
-- 🛡️ **Security** - Bcrypt password hashing, Helmet, CORS
-- 📊 **Database** - MongoDB with Mongoose ODM
-- ✅ **Input Validation** - Express-validator for request validation
-- 📄 **Pagination** - Efficient data fetching with pagination
-- 🌱 **Database Seeding** - Sample data for testing
+</div>
+
+---
+
+## 🎯 Features
+
+### Sample Products
+The seeder includes 20 electronics products across categories:
+- **Smartphones**: iPhone 15 Pro Max, Samsung Galaxy S24 Ultra
+- **Laptops**: MacBook Pro M3, Dell XPS 15, Surface Pro 9
+- **Gaming**: PlayStation 5, Nintendo Switch OLED, Gaming peripherals
+- **Audio**: Sony WH-1000XM5, AirPods Pro, Galaxy Buds2 Pro
+- **Cameras**: Canon EOS R5, GoPro HERO12, DJI Mini 4 Pro
+- **Smart Home**: Amazon Echo, Smart displays
+- **Accessories**: Mice, keyboards, monitors, and more
+
+### 👤 User Features
+- **Authentication System**: JWT-based secure login and registration
+- **User Dashboard**: Order history, profile management, and saved addresses
+- **Product Reviews**: Rate and review purchased products
+- **Wishlist**: Save favorite electronics for later
+
+### 🎨 Modern UI/UX
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Dark Mode**: Toggle between light and dark themes
+- **Smooth Animations**: Modern transitions and hover effects
+- **Glassmorphism**: Contemporary design with frosted glass effects
+- **Fast Performance**: Optimized loading and rendering
+
+### 🔐 Security & Admin
+- **Admin Dashboard**: Manage products, orders, and users
+- **Secure Payments**: Ready for Stripe/PayPal integration
+- **Data Protection**: Password hashing, JWT tokens, and secure headers
+- **Order Management**: Track and update order statuses
+
+---
 
 ## 🛠️ Tech Stack
 
-**Frontend:** React 19, Vite, Tailwind CSS, React Router, Context API, Axios, React Icons, React Toastify
+### Backend
+- **Node.js** & **Express.js** - Server and REST API
+- **MongoDB** with **Mongoose** - NoSQL Database
+- **Prisma ORM** - Modern database toolkit (Optional, supports PostgreSQL, MySQL, SQLite, MongoDB) - [Setup Guide](PRISMA_SETUP.md)
+- **JWT** - Authentication tokens
+- **bcrypt.js** - Password hashing
+- **Express Validator** - Input validation
+- **Helmet** - Security headers
+- **Morgan** - HTTP request logging
 
-**Backend:** Node.js, Express.js, MongoDB, Mongoose, JWT, Bcrypt, Express Validator, Morgan, Helmet, CORS
+### Frontend
+- **React 19** - UI library
+- **Vite 7** - Build tool and dev server
+- **Tailwind CSS 3.4** - Utility-first CSS framework
+- **React Router 6** - Client-side routing
+- **Context API** - State management
+- **Axios** - HTTP client
+- **React Icons** - Icon library
+- **React Toastify** - Toast notifications
 
-## 🚀 Getting Started
+### Development Tools
+- **Nodemon** - Auto-restart server
+- **Concurrently** - Run multiple commands
+- **ESLint** & **Prettier** - Code quality
+- **Jest** & **Cypress** - Testing (configured)
 
-### Prerequisites
-- Node.js (v16 or higher)
-- MongoDB (local or MongoDB Atlas)
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/Shopora.git
-   cd Shopora
-   ```
-
-2. **Install dependencies**
-   ```bash
-   # Install root dependencies
-   npm install
-
-   # Install frontend dependencies
-   cd frontend
-   npm install --legacy-peer-deps
-   cd ..
-   ```
-
-3. **Environment Setup**
-
-   Create `.env` file in the root directory:
-   ```env
-   NODE_ENV=development
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/shopora
-   JWT_SECRET=your_jwt_secret_key_here
-   CLIENT_URL=http://localhost:5173
-   ```
-
-   Create `.env` file in the `frontend` directory:
-   ```env
-   VITE_API_URL=http://localhost:5000/api
-   ```
-
-4. **Seed the Database** (Optional)
-   ```bash
-   npm run seed
-   ```
-
-   Demo credentials:
-   - **User**: user@example.com / password123
-   - **Admin**: admin@example.com / password123
-
-5. **Start the Application**
-   ```bash
-   npm run dev
-   ```
-
-6. **Access the Application**
-   - Frontend: http://localhost:5173
-   - Backend API: http://localhost:5000/api
-
-## 📚 API Endpoints
-
-### User Routes (`/api/users`)
-- `POST /register` - Register new user
-- `POST /login` - Login user
-- `GET /profile` - Get user profile (Auth)
-- `PUT /profile` - Update profile (Auth)
-
-### Product Routes (`/api/products`)
-- `GET /` - Get all products (supports filtering, search, pagination)
-- `GET /:id` - Get product details
-- `POST /:id/reviews` - Add product review (Auth)
-
-### Order Routes (`/api/orders`)
-- `POST /` - Create order (Auth)
-- `GET /myorders` - Get user orders (Auth)
-- `GET /:id` - Get order details (Auth)
-
-### Cart Routes (`/api/cart`)
-- `GET /` - Get cart (Auth)
-- `POST /` - Add to cart (Auth)
-- `PUT /:productId` - Update cart item (Auth)
-- `DELETE /:productId` - Remove from cart (Auth)
-
-## 📦 Available Scripts
-
-**Root Level:**
-- `npm run dev` - Run both frontend and backend
-- `npm run server` - Run backend only
-- `npm run client` - Run frontend only
-- `npm run seed` - Seed database
-- `npm run seed:destroy` - Clear database
-
-**Frontend:**
-- `npm run dev` - Start dev server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-
-## 🤝 Contributing
-
-Contributions are welcome! Please fork the repository and create a pull request.
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 👨‍💻 Author
-
-Made with ❤️ using the MERN Stack
-
+---

@@ -1,0 +1,21 @@
+{
+  "header": {
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart",
+    "login": "Login",
+    "logout": "Logout",
+    "profile": "Profile",
+    "orders": "My Orders",
+    "admin": "Admin Dashboard"
+  },
+  "buttons": {
+    "shop": "Shop Electronics",
+    "viewDeals": "View Deals",
+    "viewAll": "View All"
+  },
+  "messages": {
+    "noProducts": "No products available",
+    "welcome": "Welcome to ElectroShop"
+  }
+}

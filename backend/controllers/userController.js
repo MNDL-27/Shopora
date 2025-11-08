@@ -53,7 +53,9 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(401);
-    throw new Error('Invalid email or password');
+    // use i18n translation if available
+    const msg = req.t ? req.t('api.invalidCredentials') : 'Invalid email or password';
+    throw new Error(msg);
   }
 });
 
@@ -75,7 +77,8 @@ const getUserProfile = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error('User not found');
+    const msg = req.t ? req.t('api.userNotFound') : 'User not found';
+    throw new Error(msg);
   }
 });
 

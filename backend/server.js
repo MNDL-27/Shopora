@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import colors from 'colors';
 import connectDB from './config/db.js';
+import i18next from './i18n.js';
+import i18nextMiddleware from 'i18next-http-middleware';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 // Import routes
@@ -18,9 +20,16 @@ import configRoutes from './routes/configRoutes.js';
 dotenv.config();
 
 // Connect to MongoDB
-connectDB();
+connectDB().catch(err => {
+  console.error('MongoDB connection failed:', err.message);
+  console.log('⚠️  Running without database - some features may not work');
+  console.log('💡 To fix: Set up MongoDB Atlas and update MONGO_URI in .env');
+});
 
 const app = express();
+
+// i18n middleware - attach t function to requests
+app.use(i18nextMiddleware.handle(i18next));
 
 // Middleware
 app.use(helmet());

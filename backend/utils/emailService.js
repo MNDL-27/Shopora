@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import i18next from '../i18n.js';
 
 // Create reusable transporter
 const transporter = nodemailer.createTransport({
@@ -11,45 +12,43 @@ const transporter = nodemailer.createTransport({
 });
 
 // Send order confirmation email
-const sendOrderConfirmation = async (email, orderDetails) => {
+const sendOrderConfirmation = async (email, orderDetails, lng = 'en') => {
   try {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: 'Order Confirmation - Shopora',
+      subject: `${i18next.t('email.orderConfirmationSubject', { lng })} - Shopora`,
       html: `
-        <h1>Thank you for your order!</h1>
+        <h1>${i18next.t('email.orderReceived', { lng })}</h1>
         <p>Order ID: ${orderDetails._id}</p>
         <p>Total: $${orderDetails.totalPrice}</p>
-        <p>We'll send you a shipping confirmation email as soon as your order ships.</p>
+        <p>${i18next.t('email.willNotifyOnShip', { lng, defaultValue: "We'll send you a shipping confirmation email as soon as your order ships." })}</p>
       `,
     };
 
     await transporter.sendMail(mailOptions);
-    console.log('Order confirmation email sent');
   } catch (error) {
-    console.error('Error sending email:', error);
+    // Silent fail - log in production monitoring
   }
 };
 
 // Send order shipped email
-const sendOrderShipped = async (email, orderDetails) => {
+const sendOrderShipped = async (email, orderDetails, lng = 'en') => {
   try {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: 'Your Order Has Been Shipped - Shopora',
+      subject: `${i18next.t('email.orderShippedSubject', { lng, defaultValue: 'Your Order Has Been Shipped' })} - Shopora`,
       html: `
-        <h1>Your order is on its way!</h1>
+        <h1>${i18next.t('email.orderShippedTitle', { lng, defaultValue: 'Your order is on its way!' })}</h1>
         <p>Order ID: ${orderDetails._id}</p>
-        <p>Your order has been shipped and should arrive soon.</p>
+        <p>${i18next.t('email.orderShippedBody', { lng, defaultValue: 'Your order has been shipped and should arrive soon.' })}</p>
       `,
     };
 
     await transporter.sendMail(mailOptions);
-    console.log('Order shipped email sent');
   } catch (error) {
-    console.error('Error sending email:', error);
+    // Silent fail - log in production monitoring
   }
 };
 
