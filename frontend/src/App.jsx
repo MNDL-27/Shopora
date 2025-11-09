@@ -12,6 +12,7 @@ import { ThemeProvider } from './context/ThemeContext';
 // Components
 import Header from './components/Header';
 import Footer from './components/Footer';
+import SalePopup from './components/SalePopup';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -34,6 +35,7 @@ function App() {
             <Router>
               <div className="flex flex-col min-h-screen">
                 <Header />
+                <SalePopup />
                 <main className="flex-grow">
                   <Routes>
                     <Route path="/" element={<HomePage />} />
