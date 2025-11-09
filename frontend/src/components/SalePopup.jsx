@@ -1,186 +1,131 @@
 import { useState, useEffect } from 'react';
-import { FaTimes } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaTimes, FaCopy } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 const SalePopup = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [copiedCode, setCopiedCode] = useState(false);
+
+  const products = [
+    {
+      name: 'Off-Shoulder Knit Sweater',
+      price: 'Rs. 6,300.00',
+      image: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop',
+      badge: null
+    },
+    {
+      name: 'Draped Mock Neck Tee',
+      price: 'From Rs. 4,500.00',
+      image: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=400&h=500&fit=crop',
+      badge: 'NEW'
+    },
+    {
+      name: 'V-Neck Wool Blend Sweater',
+      price: 'Rs. 6,800.00',
+      image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=500&fit=crop',
+      badge: null
+    }
+  ];
 
   useEffect(() => {
-    // Check if popup was closed in this session
-    const popupClosed = sessionStorage.getItem('salePopupClosed');
-    
-    if (!popupClosed) {
-      // Show popup after 2 seconds
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 2000);
-
-      return () => clearTimeout(timer);
-    }
+    const timer = setTimeout(() => {
+      const hasSeenPopup = sessionStorage.getItem('salePopupSeen');
+      if (!hasSeenPopup) {
+        setIsVisible(true);
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
   }, []);
 
-  const closePopup = () => {
-    setIsOpen(false);
-    sessionStorage.setItem('salePopupClosed', 'true');
+  const handleClose = () => {
+    setIsVisible(false);
+    sessionStorage.setItem('salePopupSeen', 'true');
   };
 
-  if (!isOpen) return null;
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText('STYLE20');
+    setCopiedCode(true);
+    toast.success('Code copied to clipboard!');
+    setTimeout(() => setCopiedCode(false), 2000);
+  };
+
+  if (!isVisible) return null;
 
   return (
-    <>
-      {/* Backdrop */}
-      <div 
-        className="fixed inset-0 bg-black/50 z-50 animate-fade-in"
-        onClick={closePopup}
-      />
-
-      {/* Popup Modal */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
-        <div 
-          className="relative bg-white dark:bg-gray-900 rounded-lg shadow-2xl max-w-2xl w-full pointer-events-auto animate-scale-in overflow-hidden"
-          onClick={(e) => e.stopPropagation()}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+      <div className="relative bg-white dark:bg-gray-900 rounded-lg shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row">
+        <button
+          onClick={handleClose}
+          className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-white/90 dark:bg-gray-800/90 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
         >
-          {/* Close Button */}
-          <button
-            onClick={closePopup}
-            className="absolute top-4 right-4 z-10 w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shadow-lg"
-            aria-label="Close popup"
-          >
-            <FaTimes className="text-gray-600 dark:text-gray-300" />
-          </button>
+          <FaTimes className="text-gray-600 dark:text-gray-300" />
+        </button>
 
-          {/* Content */}
-          <div className="flex flex-col md:flex-row">
-            {/* Left Side - Image */}
-            <div className="md:w-1/2 bg-gradient-to-br from-red-600 to-red-800 p-8 flex items-center justify-center">
-              <div className="text-center text-white">
-                <div className="mb-4">
-                  <span className="inline-block bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">
-                    Limited Time Offer
-                  </span>
-                </div>
-                <h2 className="text-6xl font-black mb-2">
-                  BLACK
-                </h2>
-                <h2 className="text-6xl font-black mb-4">
-                  FRIDAY
-                </h2>
-                <div className="text-4xl font-bold mb-4">
-                  SAVE UP TO
-                </div>
-                <div className="text-7xl font-black text-yellow-400">
-                  50%
-                </div>
-                <div className="mt-6 text-lg">
-                  On Selected Items
-                </div>
-              </div>
+        <div className="md:w-1/2 h-64 md:h-auto relative">
+          <img
+            src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&h=1000&fit=crop"
+            alt="Fashion Model"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="md:w-1/2 p-8 md:p-12 overflow-y-auto">
+          <div className="max-w-md mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Special Picks for You
+            </h2>
+
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
+              We've handpicked a few styles we think you'll love. Use code <span className="font-semibold text-gray-900 dark:text-white">STYLE20</span> for 20% OFF your order today.
+            </p>
+
+            <div className="flex items-center border-2 border-gray-900 dark:border-white rounded-full px-6 py-3 mb-8">
+              <span className="flex-1 text-center font-bold text-gray-900 dark:text-white uppercase tracking-wider">
+                STYLE20
+              </span>
+              <button
+                onClick={handleCopyCode}
+                className="ml-4 hover:scale-110 transition-transform"
+              >
+                <FaCopy className={`text-xl ${copiedCode ? 'text-green-600' : 'text-gray-900 dark:text-white'}`} />
+              </button>
             </div>
 
-            {/* Right Side - Details */}
-            <div className="md:w-1/2 p-8 flex flex-col justify-center">
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                🎉 Mega Sale is Here!
-              </h3>
-              
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
-                Don't miss out on our biggest sale of the year! Get amazing discounts on electronics, gadgets, and more.
-              </p>
-
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center gap-3">
-                  <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                  <span className="text-gray-700 dark:text-gray-300">Up to 50% off on selected products</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                  <span className="text-gray-700 dark:text-gray-300">Free shipping on orders over $150</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="w-2 h-2 bg-red-600 rounded-full"></span>
-                  <span className="text-gray-700 dark:text-gray-300">Special deals on top brands</span>
-                </div>
-              </div>
-
-              {/* Countdown Timer */}
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 mb-6">
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2 text-center">
-                  Sale ends in:
-                </div>
-                <div className="flex justify-center gap-4 text-center">
-                  <div>
-                    <div className="text-2xl font-bold text-red-600">53</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">Days</div>
+            <div className="grid grid-cols-3 gap-4 mb-8">
+              {products.map((product, index) => (
+                <div key={index} className="relative group cursor-pointer">
+                  <div className="relative aspect-[3/4] mb-2 overflow-hidden">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    {product.badge && (
+                      <span className="absolute top-2 left-2 bg-white text-gray-900 text-xs font-bold px-2 py-1 rounded">
+                        {product.badge}
+                      </span>
+                    )}
                   </div>
-                  <div className="text-2xl font-bold">:</div>
-                  <div>
-                    <div className="text-2xl font-bold text-red-600">01</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">Hours</div>
-                  </div>
-                  <div className="text-2xl font-bold">:</div>
-                  <div>
-                    <div className="text-2xl font-bold text-red-600">09</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">Mins</div>
-                  </div>
-                  <div className="text-2xl font-bold">:</div>
-                  <div>
-                    <div className="text-2xl font-bold text-red-600">18</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">Secs</div>
-                  </div>
+                  <h3 className="text-xs font-medium text-gray-900 dark:text-white mb-1 line-clamp-2">
+                    {product.name}
+                  </h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                    {product.price}
+                  </p>
                 </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex gap-3">
-                <Link
-                  to="/products"
-                  onClick={closePopup}
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-lg font-semibold text-center uppercase transition-colors"
-                >
-                  Shop Now
-                </Link>
-                <button
-                  onClick={closePopup}
-                  className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                >
-                  Maybe Later
-                </button>
-              </div>
+              ))}
             </div>
+
+            <button
+              onClick={handleClose}
+              className="w-full bg-gray-900 hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-100 text-white dark:text-gray-900 py-4 rounded font-semibold uppercase tracking-wide transition-colors"
+            >
+              Continue shopping
+            </button>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        @keyframes scale-in {
-          from {
-            opacity: 0;
-            transform: scale(0.9);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
-        }
-
-        .animate-scale-in {
-          animation: scale-in 0.3s ease-out;
-        }
-      `}</style>
-    </>
+    </div>
   );
 };
 
