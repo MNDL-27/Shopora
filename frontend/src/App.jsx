@@ -22,6 +22,13 @@ import CartPage from './pages/CartPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import CheckoutPage from './pages/CheckoutPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import FAQsPage from './pages/FAQsPage';
+import BrandsPage from './pages/BrandsPage';
+import LandingPage from './pages/LandingPage';
+import LookbookPage from './pages/LookbookPage';
+import WishlistPage from './pages/WishlistPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 import './App.css';
@@ -45,6 +52,13 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/brands" element={<BrandsPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/faqs" element={<FAQsPage />} />
+                    <Route path="/landing" element={<LandingPage />} />
+                    <Route path="/lookbook" element={<LookbookPage />} />
+                    <Route path="/wishlist" element={<WishlistPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </main>

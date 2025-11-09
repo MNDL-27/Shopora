@@ -73,15 +73,45 @@ const Header = () => {
               <Link to="/products" className="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white uppercase">
                 Shop
               </Link>
-              <Link to="/blog" className="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white uppercase">
-                Blog
-              </Link>
-              <Link to="/portfolio" className="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white uppercase">
-                Portfolio
-              </Link>
-              <Link to="/pages" className="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white uppercase">
-                Pages
-              </Link>
+              
+              {/* Pages Dropdown */}
+              <div className="relative group">
+                <button className="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white uppercase flex items-center gap-1">
+                  Pages
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                {/* Dropdown Menu */}
+                <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="py-2">
+                    <Link to="/about" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                      About Us
+                    </Link>
+                    <Link to="/brands" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 relative">
+                      Brands
+                      <span className="absolute right-4 top-2 text-xs bg-red-600 text-white px-1.5 py-0.5 rounded">Sale</span>
+                    </Link>
+                    <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 relative">
+                      Contact Us
+                      <span className="absolute right-4 top-2 text-xs bg-red-600 text-white px-1.5 py-0.5 rounded">Sale</span>
+                    </Link>
+                    <Link to="/faqs" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                      FAQs
+                    </Link>
+                    <Link to="/landing" className="block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700">
+                      Landing Pages
+                    </Link>
+                    <Link to="/lookbook" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                      Lookbook
+                    </Link>
+                    <Link to="/wishlist" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                      Wish list
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Right Side Actions */}
@@ -141,6 +171,33 @@ const Header = () => {
               <Link to="/products" className="block py-2 text-sm font-semibold hover:text-gray-900 dark:hover:text-white uppercase" onClick={toggleMenu}>
                 Shop
               </Link>
+              
+              {/* Pages Section */}
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-2">
+                <p className="text-xs text-gray-500 dark:text-gray-400 uppercase mb-2">Pages</p>
+                <Link to="/about" className="block py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" onClick={toggleMenu}>
+                  About Us
+                </Link>
+                <Link to="/brands" className="block py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" onClick={toggleMenu}>
+                  Brands <span className="text-xs text-red-600">Sale</span>
+                </Link>
+                <Link to="/contact" className="block py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" onClick={toggleMenu}>
+                  Contact Us <span className="text-xs text-red-600">Sale</span>
+                </Link>
+                <Link to="/faqs" className="block py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" onClick={toggleMenu}>
+                  FAQs
+                </Link>
+                <Link to="/landing" className="block py-2 text-sm text-red-600 dark:text-red-400" onClick={toggleMenu}>
+                  Landing Pages
+                </Link>
+                <Link to="/lookbook" className="block py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" onClick={toggleMenu}>
+                  Lookbook
+                </Link>
+                <Link to="/wishlist" className="block py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" onClick={toggleMenu}>
+                  Wish list
+                </Link>
+              </div>
+              
               {user ? (
                 <>
                   <Link to="/profile" className="block py-2 text-sm font-semibold hover:text-gray-900 dark:hover:text-white uppercase" onClick={toggleMenu}>
